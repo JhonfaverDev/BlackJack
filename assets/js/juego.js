@@ -43,9 +43,22 @@ const pedirCarta = () => {
     }
 
     const carta = deck.pop(); // Tomar la última carta de la baraja
-
+    console.log(carta);
     return carta;
 
 }
 
-pedirCarta();
+// pedirCarta();
+
+const valorCarta = ( carta ) => {
+    const valor = carta.substring(0, carta.length - 1); // Tomar el valor de la carta
+    return ( isNaN( valor ) ) ?  // Si no es un número para eso es el metodo isNaN
+            ( valor === 'A' ) ? 11 : 10  // Si es A vale 11, si no vale 10
+            : valor * 1; // Multiplicar por 1 para convertirlo a número y no dejarlo en string
+    
+
+}
+
+
+const valor = valorCarta( pedirCarta());
+console.log({ valor });
