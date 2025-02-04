@@ -4,11 +4,19 @@
  * 2H = Two of Hearts (Corazones)
  * 2S = Two of Spades (Espadas)
  */
-
-// Variables
 let deck = [];  // Baraja
 const tipos = ['C', 'D', 'H', 'S'];
 const especiales = ['A', 'J', 'Q', 'K'];
+
+let puntosJugador = 0,
+    puntosComputadora = 0;
+
+// Referencias del HTML
+const btnPedir = document.querySelector('#btnPedir');
+const puntosHTML = document.querySelectorAll('small');
+
+
+
 
 // Esta función crea una nueva baraja
 const crearDeck = () => {
@@ -24,12 +32,10 @@ const crearDeck = () => {
         }
     }
 
-    // console.log(deck);
     deck = _.shuffle( deck );
     console.log(deck);
 
     return deck;
-
 }
 
 crearDeck();
@@ -43,22 +49,25 @@ const pedirCarta = () => {
     }
 
     const carta = deck.pop(); // Tomar la última carta de la baraja
-    console.log(carta);
     return carta;
-
 }
-
-// pedirCarta();
 
 const valorCarta = ( carta ) => {
     const valor = carta.substring(0, carta.length - 1); // Tomar el valor de la carta
     return ( isNaN( valor ) ) ?  // Si no es un número para eso es el metodo isNaN
             ( valor === 'A' ) ? 11 : 10  // Si es A vale 11, si no vale 10
             : valor * 1; // Multiplicar por 1 para convertirlo a número y no dejarlo en string
-    
-
 }
 
 
-const valor = valorCarta( pedirCarta());
-console.log({ valor });
+// Eventos
+
+btnPedir.addEventListener('click', () => {
+    const carta = pedirCarta();
+
+    puntosJugador = puntosJugador + valorCarta( carta );
+    puntosHTML[0].innerText = puntosJugador;
+
+
+    console.log({ puntosJugador });
+});
