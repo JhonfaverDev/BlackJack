@@ -5,7 +5,6 @@ html, body {
     font-family: Arial, sans-serif;
 }
 
-
 .titulo {
     text-align: center;
     background-color: black;
@@ -20,7 +19,6 @@ html, body {
     left: 100px;
     margin-left: -75px;
 }
-
 
 #computadora-cartas, #jugador-cartas {
     height: 240px;
